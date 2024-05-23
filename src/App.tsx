@@ -19,7 +19,7 @@ function App() {
             A sidebar
           </GridItem>
         </Show>
-        <GridItem area={"main"} bg={"gray"}>
+        <GridItem area={"main"} padding={2}>
           <GameGrid />
         </GridItem>
       </Grid>
