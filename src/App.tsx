@@ -4,9 +4,14 @@ import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
 import PlatformSelector from "./components/PlatformSelector";
+import { Genre } from "./hooks/useGenres";
+import { Platform } from "./hooks/useGames";
 
 function App() {
   const [selectedGenre, setselectedGenre] = useState<Genre | null>(null);
+  const [selectedPlatform, setselectedPlatform] = useState<Platform | null>(
+    null
+  );
   return (
     <>
       <Grid
