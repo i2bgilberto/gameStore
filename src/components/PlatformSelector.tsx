@@ -22,7 +22,6 @@ const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
             key={platform.id}
             onClick={() => {
               onSelectPlatform(platform);
-              console.log(platform);
             }}
           >
             {platform.name}
