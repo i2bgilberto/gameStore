@@ -1,5 +1,12 @@
-import axios from "axios";
-import { FecthResponse } from "../hooks/useData";
+import axios, { AxiosRequestConfig } from "axios";
+
+
+
+  export interface FecthResponse <T>{
+    count: number;
+    results: T[];
+}
+
 
 const axiosInstance = axios.create({
     baseURL: "https://api.rawg.io/api",
@@ -13,21 +20,11 @@ class ApiClient<T>{
 
     constructor(endpoint: string) {
         this.endpoint = endpoint;
-        axiosInstance.defaults.params = {
-            ...axiosInstance.defaults.params,
-            ...{
-                page_size: 100
-            }
-        }
     }
 
-    getAll = () => {
+    getAll = (config : AxiosRequestConfig) => {
         return axiosInstance.get<FecthResponse<T>>(this.endpoint,
-            {
-               params: {
-                   ...axiosInstance.defaults.params
-               }
-            }
+            config
         ).then(res => res.data)  ;
     }
 }

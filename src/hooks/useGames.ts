@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { gameQuery } from "../App";
-import { FecthResponse } from "./useData";
-import apiClient from "../services/api-client";
+import apiClient from "../services/apiClient";
 
+
+const getGames = new apiClient('/games');
 
 export interface Platform {
   id : number;
@@ -24,16 +25,16 @@ export interface Game {
   
 
 const useGames = (gameQuery: gameQuery) => 
-  useQuery<FecthResponse<Game>, Error>({
+  useQuery({
     queryKey: ['games', gameQuery],
-    queryFn: () => apiClient.get<FecthResponse<Game>>('/games',{
-      params : {
-        genres : gameQuery.genres?.id, 
-        parent_platforms : gameQuery.platforms?.id,
+    queryFn: () => getGames.getAll({
+      params: {
+        genres: gameQuery.genres?.id,
+        parent_platforms: gameQuery.platforms?.id,
         ordering: gameQuery.sortOrder,
         search: gameQuery.searchText
       }
-    }).then(res => res.data),
+    }),
     staleTime: 24 * 60 * 60 * 1000 // 24 hours
   })
   
