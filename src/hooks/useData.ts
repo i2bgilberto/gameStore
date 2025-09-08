@@ -4,7 +4,7 @@ import { AxiosRequestConfig, CanceledError } from "axios";
 
 
 
-interface FecthResponse <T>{
+export interface FecthResponse <T>{
     count: number;
     results: T[];
 }
