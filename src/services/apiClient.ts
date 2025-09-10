@@ -4,6 +4,9 @@ import axios, { AxiosRequestConfig } from "axios";
 
   export interface FecthResponse <T>{
     count: number;
+    next?: string | null;
+    previous?: string | null;
+    pageSize?: number;
     results: T[];
 }
 
@@ -23,9 +26,7 @@ class ApiClient<T>{
     }
 
     getAll = (config : AxiosRequestConfig) => {
-        return axiosInstance.get<FecthResponse<T>>(this.endpoint,
-            config
-        ).then(res => res.data)  ;
+        return axiosInstance.get<FecthResponse<T>>(this.endpoint, config).then(res => res.data);
     }
 }
 
